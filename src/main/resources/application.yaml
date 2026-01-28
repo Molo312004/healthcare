@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: HealthCare
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/healthcare_db
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8081
+  error:
+    include-message: always
+    include-binding-errors: always
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      http:
+        converter: DEBUG
