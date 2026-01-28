@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.http.HttpMethod;
 
 import static org.springframework.http.HttpMethod.POST;
 
@@ -28,10 +29,11 @@ public class SecurityConfig {
             .formLogin(form -> form.disable())
 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(POST, "/api/users/register").permitAll()
-                .requestMatchers(POST, "/api/auth/login").permitAll()
-                .anyRequest().authenticated()
-            );
+            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+            .anyRequest().authenticated()
+        );
 
         return http.build();
     }
