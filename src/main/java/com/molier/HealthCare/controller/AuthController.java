@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        // TODO: Implement login logic with JWT
+        
         return ResponseEntity.ok(new LoginResponse("token", "user@example.com"));
     }
 
